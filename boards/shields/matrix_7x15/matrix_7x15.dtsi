@@ -27,10 +27,10 @@
         >;
     };
 
-    /* kscan 引脚由各板型 overlay 提供（如 matrix_7x15_nice_nano_v2.overlay） */
+    /* row2col：row=输出(驱动)，col=输入(检测电平) */
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         wakeup-source;
-        diode-direction = "col2row";
+        diode-direction = "row2col";
     };
 };

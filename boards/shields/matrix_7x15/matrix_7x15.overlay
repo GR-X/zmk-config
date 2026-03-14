@@ -1,47 +1,30 @@
 /*
- * 7x15 矩阵键盘 - nice!nano 引脚对应（nRF52840）
+ * 7x15 矩阵键盘 - nice!nano 引脚（row2col）
  *
- * 行 (row) 7 个 — 板子标注 / 芯片引脚:
- *   row0  pro_micro 0  →  D0  →  P0.8
- *   row1  pro_micro 1  →  D1  →  P0.6
- *   row2  pro_micro 2  →  D2  →  P0.17
- *   row3  pro_micro 3  →  D3  →  P0.20
- *   row4  pro_micro 4  →  D4  →  P0.22
- *   row5  pro_micro 5  →  D5  →  P0.24
- *   row6  pro_micro 6  →  D6  →  P1.0
+ * 扫描逻辑（与硬件一致）:
+ *   - row 在 PCB 上物理上拉；扫描时只驱动「当前行」为高，其余 row 由驱动主动输出低（保持下拉）。
+ *   - col 为输入，检测高电平；哪一路 col 读到高，即对应该 (row,col) 按键按下。
  *
- * 列 (col) 15 个:
- *   col0  pro_micro 7   →  D7   →  P0.11
- *   col1  pro_micro 8   →  D8   →  P1.4
- *   col2  pro_micro 9   →  D9   →  P1.6
- *   col3  pro_micro 10  →  D10  →  P0.9
- *   col4  pro_micro 14  →  D14  →  P1.11
- *   col5  pro_micro 15  →  D15  →  P1.13
- *   col6  pro_micro 16  →  D16  →  P0.10
- *   col7  gpio0 25      →  —    →  P0.25
- *   col8  gpio0 26      →  —    →  P0.26
- *   col9  gpio0 27      →  —    →  P0.27
- *   col10 gpio0 28      →  —    →  P0.28
- *   col11 gpio0 29      →  —    →  P0.29
- *   col12 gpio0 30      →  —    →  P0.30
- *   col13 gpio0 31      →  —    →  P0.31
- *   col14 gpio1 1       →  —    →  P1.1   (原 P0.24 与 row5 冲突，改为 P1.1)
+ * row（输出）7 个: D0–D6 → P0.8, P0.6, P0.17, P0.20, P0.22, P0.24, P1.0
+ * col（输入）15 个: D7,D8,D9,D10,D14,D15,D16 + gpio0 25–31 + gpio1 1
  * SPDX-License-Identifier: MIT
  */
 
 #include "matrix_7x15.dtsi"
 
 &kscan0 {
+    /* row = 输出：扫描时仅当前行拉高，其余行驱动为低（与物理上拉配合） */
     row-gpios
-        = <&pro_micro 0 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 1 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        = <&pro_micro 0 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 1 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 2 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 3 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 4 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 6 GPIO_ACTIVE_HIGH>
         ;
 
+    /* col = 输入（检测），PULL_DOWN + ACTIVE_HIGH = 读到高电平触发 */
     col-gpios
         = <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&pro_micro 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
