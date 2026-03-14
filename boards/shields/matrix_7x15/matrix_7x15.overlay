@@ -28,14 +28,15 @@
  *   col13  gpio0 27     →  P0.27  (需核对板子是否引出)
  *   col14  gpio1 1      →  P1.1   (需核对板子是否引出)
  *
- * 若你实际只接了 D0–D16 + A0–A3，则 col7–col10 用 18,19,20,21 已对上；
- * col11–col14 若板子无 P0.25/P0.26/P0.27/P1.1 引出，请按你板子实际接线改。
+ * 电平（实测）: 接 row 后 不按=0V、按下=110mV，两者都低无法区分。
+ * 改为：扫描时 row 输出高（3.3V），col 下拉；不按=0V（低），按下=col 接到 row 高≈3.3V（高），即可区分。
  * SPDX-License-Identifier: MIT
  */
 
 #include "matrix_7x15.dtsi"
 
 &kscan0 {
+    /* 扫描时「当前行」输出高（3.3V），按下时 col 被该行拉高 */
     row-gpios
         = <&pro_micro 0 GPIO_ACTIVE_HIGH>
         , <&pro_micro 1 GPIO_ACTIVE_HIGH>
@@ -46,6 +47,7 @@
         , <&pro_micro 6 GPIO_ACTIVE_HIGH>
         ;
 
+    /* col 下拉；不按=0V（低），按下=读到高（3.3V） */
     col-gpios
         = <&pro_micro 7  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&pro_micro 8  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
