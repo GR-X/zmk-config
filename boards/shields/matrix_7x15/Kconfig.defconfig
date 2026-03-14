@@ -1,0 +1,9 @@
+# Copyright (c) 2025
+# SPDX-License-Identifier: MIT
+
+if SHIELD_MATRIX_7X15
+
+config ZMK_KEYBOARD_NAME
+    default "Matrix 7x15"
+
+endif

@@ -18,6 +18,6 @@
 #     artifact-name: corne_left_with_studio
 #
 ---
-# 通用固件：先跑通 Action 流程，后续再改自定义
+# 通用固件 + 7x15 矩阵键盘
 board: [ "nice_nano" ]
-shield: [ "corne_left", "corne_right" ]
+shield: [ "corne_left", "corne_right", "matrix_7x15" ]

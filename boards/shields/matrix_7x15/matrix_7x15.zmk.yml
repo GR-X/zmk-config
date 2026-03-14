@@ -1,0 +1,8 @@
+file_format: "1"
+id: matrix_7x15
+name: Matrix 7x15
+type: shield
+url: ""
+requires: [pro_micro]
+features:
+  - keys
