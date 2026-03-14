@@ -7,8 +7,10 @@
 
 &mouse_ps2_input_listener {
     layer-toggle = <1>;
-    layer-toggle-delay-ms = <250>;
-    layer-toggle-timeout-ms = <250>;
+    /* 移动多久才切到鼠标层，避免误触 */
+    layer-toggle-delay-ms = <200>;
+    /* 停止移动后鼠标层保持时间：改大一点，左/中/右键更好按到 */
+    layer-toggle-timeout-ms = <800>;
     /* 上下方向反了时启用 */
     y-invert;
 };

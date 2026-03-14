@@ -6,11 +6,10 @@
 #ifdef MOUSE_PS2_DT_PRESENT
 
 &mouse_ps2_input_listener {
-    /* 移动小红点时自动激活的层（例如 1 = mouse_layer） */
     layer-toggle = <1>;
-    layer-toggle-delay-ms = <250>;
-    layer-toggle-timeout-ms = <250>;
-    /* 上下方向反了时启用 */
+    layer-toggle-delay-ms = <200>;
+    /* 停止移动后保持 800ms，左/中/右键更好触发 */
+    layer-toggle-timeout-ms = <800>;
     y-invert;
 };
 

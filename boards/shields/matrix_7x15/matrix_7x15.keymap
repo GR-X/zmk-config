@@ -1,6 +1,5 @@
 /*
- * 仅测 ThinkPad 小红点 + 鼠标左/中/右键
- * 4x15 矩阵；移动小红点激活 layer 1，该层三个键：左键、中键、右键。
+ * ThinkPad 小红点 + 鼠标左/中/右键（默认层一直启用，无需先动小红点）
  * SPDX-License-Identifier: MIT
  */
 #define HAS_MOUSE_TP
@@ -20,18 +19,17 @@
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &mkp LCLK &mkp MB3 &mkp RCLK &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
         };
 
-        /* 移动小红点时激活：左/中/右键；右下角两颗为灵敏度 +/- */
         mouse_layer {
             display-name = "Mouse";
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &trans &trans &trans &mkp MB3 &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &mkp LCLK &mkp MB3 &mkp RCLK &trans &trans &trans &trans &trans &trans &trans &mms MS_TP_SENSITIVITY_DECR &mms MS_TP_SENSITIVITY_INCR &trans &trans
+                &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &mkp LCLK &mkp MB3 &mkp RCLK &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
         };
     };
