@@ -15,6 +15,9 @@
 
 &mouse_ps2 {
     status = "okay";
+    /* 灵敏度：默认 128，可改为 80–200，越大越快；运行时可用按键 &mms MS_TP_SENSITIVITY_INCR/DECR 调节 */
+    tp-sensitivity = <128>;
+    /* 可选：最大速度 tp-val6-upper-speed = <97>; 负惯性 tp-neg-inertia = <6>; */
 };
 
 &mouse_ps2_input_listener {

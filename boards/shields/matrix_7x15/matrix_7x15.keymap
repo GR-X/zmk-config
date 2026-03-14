@@ -8,7 +8,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/mouse.h>
-#include <dt-bindings/zmk/pointing.h>
 #include "include/mouse_tp.dtsi"
 
 / {
@@ -25,14 +24,14 @@
             >;
         };
 
-        /* 移动小红点时激活：左键/中键/右键；最后一排左中右，倒数第二排中间也是中键 */
+        /* 移动小红点时激活：左/中/右键；右下角两颗为灵敏度 +/- */
         mouse_layer {
             display-name = "Mouse";
             bindings = <
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &mkp MB3 &trans &trans &trans &trans &trans &trans &trans &trans &trans
                 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-                &trans &trans &mkp LCLK &mkp MB3 &mkp RCLK &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+                &trans &trans &mkp LCLK &mkp MB3 &mkp RCLK &trans &trans &trans &trans &trans &trans &trans &mms MS_TP_SENSITIVITY_DECR &mms MS_TP_SENSITIVITY_INCR &trans &trans
             >;
         };
     };
