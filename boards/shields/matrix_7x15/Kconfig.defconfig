@@ -6,4 +6,7 @@ if SHIELD_MATRIX_7X15
 config ZMK_KEYBOARD_NAME
     default "Matrix 7x15"
 
+config ZMK_POINTING
+    default y
+
 endif
