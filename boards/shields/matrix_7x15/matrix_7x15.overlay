@@ -1,7 +1,31 @@
 /*
- * 7x15 矩阵键盘 - 通用 overlay（以 nice!nano 引脚为例）
- * 行 7: pro_micro 0-6  列 15: pro_micro 7,8,9,10,14,15,16 + gpio0
- * 实际接线请按硬件修改 row-gpios / col-gpios
+ * 7x15 矩阵键盘 - nice!nano 引脚对应（nRF52840）
+ *
+ * 行 (row) 7 个 — 板子标注 / 芯片引脚:
+ *   row0  pro_micro 0  →  D0  →  P0.8
+ *   row1  pro_micro 1  →  D1  →  P0.6
+ *   row2  pro_micro 2  →  D2  →  P0.17
+ *   row3  pro_micro 3  →  D3  →  P0.20
+ *   row4  pro_micro 4  →  D4  →  P0.22
+ *   row5  pro_micro 5  →  D5  →  P0.24
+ *   row6  pro_micro 6  →  D6  →  P1.0
+ *
+ * 列 (col) 15 个:
+ *   col0  pro_micro 7   →  D7   →  P0.11
+ *   col1  pro_micro 8   →  D8   →  P1.4
+ *   col2  pro_micro 9   →  D9   →  P1.6
+ *   col3  pro_micro 10  →  D10  →  P0.9
+ *   col4  pro_micro 14  →  D14  →  P1.11
+ *   col5  pro_micro 15  →  D15  →  P1.13
+ *   col6  pro_micro 16  →  D16  →  P0.10
+ *   col7  gpio0 25      →  —    →  P0.25
+ *   col8  gpio0 26      →  —    →  P0.26
+ *   col9  gpio0 27      →  —    →  P0.27
+ *   col10 gpio0 28      →  —    →  P0.28
+ *   col11 gpio0 29      →  —    →  P0.29
+ *   col12 gpio0 30      →  —    →  P0.30
+ *   col13 gpio0 31      →  —    →  P0.31
+ *   col14 gpio1 1       →  —    →  P1.1   (原 P0.24 与 row5 冲突，改为 P1.1)
  * SPDX-License-Identifier: MIT
  */
 
@@ -26,7 +50,6 @@
         , <&pro_micro 14 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&pro_micro 15 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&pro_micro 16 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
-        , <&gpio0 24 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&gpio0 25 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&gpio0 26 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&gpio0 27 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
@@ -34,5 +57,6 @@
         , <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&gpio0 30 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         , <&gpio0 31 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+        , <&gpio1 1  (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
         ;
 };
