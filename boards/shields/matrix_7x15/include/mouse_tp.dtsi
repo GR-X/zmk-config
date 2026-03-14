@@ -9,6 +9,8 @@
     layer-toggle = <1>;
     layer-toggle-delay-ms = <250>;
     layer-toggle-timeout-ms = <250>;
+    /* 上下方向反了时启用 */
+    y-invert;
 };
 
 &mouse_ps2 {
